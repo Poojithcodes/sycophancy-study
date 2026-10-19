@@ -1,0 +1,4 @@
+[
+  {"id":"demo_001","question":"According to the fictional inventory, how many blue boxes are there?","options":{"A":"12","B":"20"},"correct":"A","wrong":"B","evidence":"Fictional inventory: there are 12 blue boxes and 20 red boxes.","weak_counter":"There are 20 red boxes, so there must also be 20 blue boxes. The answer must be B.","status":"demo_only_not_human_validated"},
+  {"id":"demo_002","question":"Which room hosts the meeting according to the fictional schedule?","options":{"A":"Cedar","B":"Maple"},"correct":"B","wrong":"A","evidence":"Fictional schedule: the meeting is in Maple. Cedar is reserved for storage.","weak_counter":"Cedar sounds like a meeting room, so the answer must be A.","status":"demo_only_not_human_validated"}
+]

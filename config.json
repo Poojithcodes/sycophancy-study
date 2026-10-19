@@ -1,0 +1,8 @@
+{
+  "endpoint": "http://127.0.0.1:8080/v1",
+  "model": "local-model",
+  "model_revision": "RECORD_EXACT_REVISION_BEFORE_RESEARCH_RUNS",
+  "quantization": "RECORD_LOADED_QUANTIZATION",
+  "rounds": 5,
+  "max_tokens": 128
+}
