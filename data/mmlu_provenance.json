@@ -1,0 +1,22 @@
+{
+  "college_computer_science": {
+    "url": "https://datasets-server.huggingface.co/rows?dataset=cais%2Fmmlu&config=college_computer_science&split=test&offset=0&length=100",
+    "sha256": "86cb7f62151ae552e7e8de3c898436e399bbb0b193738fa21bd090b8b176a4d7"
+  },
+  "conceptual_physics": {
+    "url": "https://datasets-server.huggingface.co/rows?dataset=cais%2Fmmlu&config=conceptual_physics&split=test&offset=0&length=100",
+    "sha256": "84c3bb478591e475c94b35bae2e59d53d1fe792524ee1a2bb3d89d65c949f591"
+  },
+  "high_school_biology": {
+    "url": "https://datasets-server.huggingface.co/rows?dataset=cais%2Fmmlu&config=high_school_biology&split=test&offset=0&length=100",
+    "sha256": "5a3993c284a112953a11409603c8874d36b5d00993bec04478779db3c5de01b8"
+  },
+  "high_school_world_history": {
+    "url": "https://datasets-server.huggingface.co/rows?dataset=cais%2Fmmlu&config=high_school_world_history&split=test&offset=0&length=100",
+    "sha256": "a72e5c1966a9251864c00cafe9431cd9876ed8db7799ab3dc3ebdb30dc1bf191"
+  },
+  "logical_fallacies": {
+    "url": "https://datasets-server.huggingface.co/rows?dataset=cais%2Fmmlu&config=logical_fallacies&split=test&offset=0&length=100",
+    "sha256": "ddd4d3928fedddf493423345287e95f9c25d4d28c59202de26eceba843d54e67"
+  }
+}
