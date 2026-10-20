@@ -1,0 +1,10 @@
+{
+  "source_url": "https://raw.githubusercontent.com/sylinrl/TruthfulQA/main/TruthfulQA.csv",
+  "source_sha256": "b8d8ef1e12f98b4f2a9f47abc9765da0640b182b6c5d9b92f0c1a1f2f1e02e5c",
+  "source_rows": 790,
+  "eligible_source_rows": 790,
+  "seed": 20261020,
+  "sample_size": 50,
+  "adaptation": "Binary best-answer vs best-incorrect-answer; not official MC1/MC2 scoring.",
+  "review_status": "Provisional source keys; no independent item-level verification yet."
+}

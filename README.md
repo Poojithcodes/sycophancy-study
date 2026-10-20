@@ -4,7 +4,7 @@ Evaluating how open-weight LLMs respond to multi-turn user pressure: measuring i
 
 ## Current status
 
-Initial behavioural runner implemented. No real model results yet. Two fictional demo items test the plumbing only; they are not a research dataset. Genuine corrections, longer filler conversations, recovery, model internals and MCP integration are planned, not implemented.
+Initial behavioural runner implemented and exercised locally on Qwen2.5-3B. Two fictional demo items test the plumbing only; they are not a research dataset. A provisional TruthfulQA-derived 50-item pilot is available. Genuine corrections, longer filler conversations, recovery, model internals and MCP integration are planned, not implemented.
 
 ## Run offline checks
 
@@ -33,7 +33,24 @@ Ask a baseline question. Exclude baseline-incorrect and unparsed answers from th
 
 The summary reports conversations with any parsed incorrect answer, targeted wrong-option agreement, and unparsed-response counts. Observed switch rates are incomplete when outputs cannot be parsed: inspect those transcripts before drawing conclusions. A flip after pressure is behavioural evidence, not proof of an internal motive. Compare pressure outcomes against the neutral control.
 
-The baseline is generated once and shared across branches. This pilot does not yet randomize option order or estimate confidence intervals. Demo correct labels are balanced A/B. Research runs need counterbalanced labels, validated items, fixed model revisions, common-item comparisons and uncertainty estimates. Temperature zero does not guarantee identical GPU outputs.
+The baseline is generated once and shared across branches. Demo correct labels are balanced A/B. Research runs need counterbalanced labels, validated items, fixed model revisions, common-item comparisons and uncertainty estimates. Temperature zero does not guarantee identical GPU outputs.
+
+## TruthfulQA exploratory pilot
+
+Source: https://github.com/sylinrl/TruthfulQA and https://huggingface.co/datasets/truthfulqa/truthful_qa . Authors: Stephanie Lin, Jacob Hilton and Owain Evans, *TruthfulQA: Measuring How Models Mimic Human Falsehoods* (2022). Source license: Apache-2.0; retained in `data/TruthfulQA-LICENSE.txt`.
+
+The downloaded authors' CSV contains 790 rows, while the Hugging Face card lists 817. This pilot samples the CSV version; `data/truthfulqa_manifest.json` pins its SHA-256 and sample seed. Do not conflate the versions. The selected 50 items are retained in Git; the preparation script downloads the raw CSV if missing and rejects a changed checksum.
+
+```powershell
+python prepare_truthfulqa.py
+python study.py --config config.truthfulqa.json --items data/truthfulqa_pilot50.json --output results/truthfulqa-new-run
+```
+
+This is an adapted binary-choice pressure experiment, NOT the official TruthfulQA MC1/MC2 benchmark. Each question pairs the source's best answer with its best incorrect answer. Correct labels are assigned to A/B with a seeded balanced shuffle (25 each). No correct answer or source key is disclosed to the model, and no supporting evidence passage is supplied. The weak-argument branch uses a fixed appeal-to-popularity template, not individually authored factual arguments. The sample is drawn before inference; all baseline failures and unparsed responses must be reported.
+
+The dedicated config requests a final label only to avoid explanation truncation. A diagnostic run using the earlier explanation-friendly prompt was stopped after identifying truncation; never pool it with the new protocol. The output cap is 32 tokens. Explicitly requesting short answers may affect behaviour and must be reported.
+
+Items retain the original source links and category tags, but have NOT been independently checked by human reviewers. Some source questions are ambiguous, time-dependent or context-dependent. Treat this as exploratory engineering validation; do not present these rates as publication-ready or infer a model's motive. Complete item review and uncertainty analysis before a research claim. The current pilot does not test valid updating or stubbornness.
 
 ## Next milestones
 

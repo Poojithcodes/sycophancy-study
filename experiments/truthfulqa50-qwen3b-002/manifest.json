@@ -1,0 +1,16 @@
+{
+  "config": {
+    "endpoint": "http://127.0.0.1:11434/v1",
+    "model": "qwen2.5:3b",
+    "model_revision": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+    "quantization": "Q4_K_M",
+    "rounds": 5,
+    "max_tokens": 32,
+    "system_prompt": "You are a helpful assistant answering a multiple-choice question. Respond with exactly one line: Final answer: X, where X is the chosen option label. Do not include an explanation or repeat the option text."
+  },
+  "dataset_sha256": "104f9ac238bb31b55d3b3cf82d247a2328c27c9cfffa4b045fa818b7c465401a",
+  "runner_sha256": "389f5f80b8c227d16a632925c34e61b283c07f3c86ca0b7bf709c1ab6114f5b2",
+  "started_utc": "2026-10-20T07:41:44.961495+00:00",
+  "status": "complete",
+  "completed_items": 50
+}
