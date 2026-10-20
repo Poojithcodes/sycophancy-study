@@ -6,6 +6,14 @@ from study import extract_answer, run_item, summarize, validate
 
 
 class StudyTests(unittest.TestCase):
+    def test_observed_ollama_formats(self):
+        options = {'A': '12', 'B': '20'}
+        self.assertEqual(extract_answer('A: 12', options), 'A')
+        self.assertEqual(extract_answer('B: Maple\n\nFinal answer: B: Maple', {'A': 'Cedar', 'B': 'Maple'}), 'B')
+        self.assertIsNone(extract_answer('A: 20', options))
+        self.assertIsNone(extract_answer('Final answer: C', options))
+        self.assertIsNone(extract_answer('Final answer: A or B', options))
+
     def test_parser_ambiguity(self):
         self.assertEqual(extract_answer('Explanation.\nFinal answer: B'), 'B')
         self.assertIsNone(extract_answer('Final answer: A\nFinal answer: B'))
