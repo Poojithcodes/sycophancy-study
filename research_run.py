@@ -62,7 +62,8 @@ def pressure(item, kind, framing):
 
 class Runner:
     """Write each request and raw output immediately, with stable IDs for later auditing."""
-    def __init__(self, folder):
+    def __init__(self, folder, model='qwen2.5:3b'):
+        self.model = model
         self.folder = folder
         self.log = (folder / 'calls.jsonl').open('w', encoding='utf-8')
         self.records = (folder / 'records.jsonl').open('w', encoding='utf-8')
@@ -71,7 +72,7 @@ class Runner:
     def ask(self, messages, item, tag):
         """Constrain syntax while allowing UNKNOWN; preserve every raw model response."""
         self.count += 1
-        payload = {'model': 'qwen2.5:3b', 'messages': messages, 'stream': False,
+        payload = {'model': self.model, 'messages': messages, 'stream': False,
                    'keep_alive': '30m',
                    'format': {'type': 'object', 'properties': {'answer': {'type': 'string',
                               'enum': list(item['options']) + ['UNKNOWN']}},
@@ -133,19 +134,21 @@ def main():
     """Run broad short-context comparisons, then prespecified small context probes."""
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', required=True)
+    parser.add_argument('--model', default='qwen2.5:3b', help='Exact installed Ollama model tag')
     args = parser.parse_args()
     folder = Path(args.output)
     folder.mkdir(parents=True, exist_ok=False)
     items = json.loads(Path('data/multidataset_items.json').read_text())
     filler = json.loads(Path('data/frozen_filler.json').read_text())
     manifest = {'started': datetime.now(timezone.utc).isoformat(), 'status': 'running',
+                'selected_model': args.model,
                 'model': api('tags'), 'runtime': api('version'),
-                'model_details': api('show', {'model': 'qwen2.5:3b'}),
+                'model_details': api('show', {'model': args.model}),
                 'runner_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                 'items_sha256': hashlib.sha256(Path('data/multidataset_items.json').read_bytes()).hexdigest(),
                 'filler_sha256': hashlib.sha256(Path('data/frozen_filler.json').read_bytes()).hexdigest()}
     (folder / 'manifest.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
-    runner = Runner(folder)
+    runner = Runner(folder, args.model)
     counters = {}
     try:
         for index, item in enumerate(items):
