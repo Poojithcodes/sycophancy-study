@@ -1,29 +1,15 @@
-# Completed 300-question Qwen study
+# Expanded 300-question study
 
-Both Qwen2.5 models completed all 300 questions on 5 November 2026: 3B generated 2,918 responses and 7B generated 4,254 (7,172 total). This expanded study is separate from the earlier 106-question pilot.
+## New teammate runs
 
-- [Read the comparison report](results/expanded300-v1/REPORT.md)
-- [Download complete experiment and raw results](expanded300-complete.zip)
-- [Protocol and run instructions](README_300.md)
-- [SHA-256 checksums of all archived files](SHA256SUMS.json)
+Follow [TEAM_START.md](TEAM_START.md) for exact Llama, Mistral and Phi commands. `run_model.py` automatically restores only the frozen data files from the archive; it never extracts old code or completed results over your working files. Run each model in its own output folder.
 
-## Get the full data
+The original `run_300.py` and archive are unchanged snapshots of the Qwen experiment. Use `run_model.py` for new runs. The old README_300.md describes the original two-Qwen workflow.
 
-The ZIP contains the exact code, frozen dataset, source CSVs and licenses, raw request/response logs, records, model/runtime manifests, progress, analyses and comparison report (35 files). Extract it into the repository root: it contains an `expanded-study/` directory. Code and summary files are also provided here for browsing. The full raw logs and dataset are in the archive, not separate GitHub files. Temporary locks and Python caches are excluded.
+## Completed Qwen results
 
-From the repository root, extraction can be done with:
+Both models finished all 300 questions: 2,918 responses for 3B and 4,254 for 7B. [Read the report](results/expanded300-v1/REPORT.md).
 
-```powershell
-python -m zipfile -e expanded-study/expanded300-complete.zip .
-python -m unittest discover -s expanded-study -p test_expanded.py
-```
+[expanded300-complete.zip](expanded300-complete.zip) contains the complete 35-file snapshot: code, dataset, source CSVs and licenses, raw logs, records, model/runtime manifests and analyses. [SHA256SUMS.json](SHA256SUMS.json) records the archived file hashes. To inspect the original experiment, extract the archive into a separate empty directory, not over the current repository.
 
-All seven tests passed before upload. The completed logs were replayed offline on 5 November: reconstructed records and analyses matched the saved outputs exactly. No new model inference was used for that check.
-
-## Interpretation
-
-On 76 MMLU questions both initially answered correctly, neutral wrong-switch counts were 5 (3B) and 4 (7B), compared with 37 and 75 under disagreement. A wrong switch is any wrong option across five follow-ups. UNKNOWN is explicit abstention and must be reported separately; 3B abstained much more often. These findings do not establish a general model-size ranking. Synthetic questions use ten template families; independent answer review and broader validation remain pending.
-
-## Teammate readiness
-
-This is the exact Qwen experiment snapshot. The runner and comparison are still fixed to Qwen 3B/7B. General model-selection support and teammate-specific commands remain to be implemented and tested. Do not silently change this archived run's settings or overwrite its results.
+These are exploratory findings. UNKNOWN abstentions complicate rankings, human answer review remains pending, and synthetic items come from ten template families. Ten automated tests pass; real teammate-model inference has not been performed here.
