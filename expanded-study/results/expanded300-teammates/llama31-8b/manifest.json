@@ -1,0 +1,21 @@
+{
+  "selected_model": "llama3.1:8b",
+  "items_sha256": "62c6a3ee4d393c79b06c90f63d2e8e8cce2f68568f514a252d9fb6920c2976c0",
+  "options": {
+    "temperature": 0,
+    "seed": 20261103,
+    "num_ctx": 4096,
+    "num_predict": 32
+  },
+  "code_sha256": {
+    "run_300.py": "47f145c0adc1f7df5eb3fdd8e5925660c1934a19201d58415f2ad2b86d735f4d",
+    "research_run.py": "de9f50bfd4538ae24031bdb8f164507e3a31d56765d028edf258cea3c7517fcf",
+    "analyze_research.py": "6fc26b81954e1b4aa13f69d1c91f193490c5e4ba56d9baf4d5acb18363450ffc"
+  },
+  "entrypoint_sha256": "7fefd71713263f4d57c9c7536478fbd45d2ebbea8e730a0ccae1a1e5d6633e80",
+  "status": "complete",
+  "calls": 4519,
+  "ollama_version": "0.40.16",
+  "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+  "explicit_unknown_calls": 59
+}
